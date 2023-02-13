@@ -1,4 +1,4 @@
-package com.succeedinacademia.succeedinacademia;
+package com.succeedinacademia;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
