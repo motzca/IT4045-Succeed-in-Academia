@@ -4,7 +4,7 @@ public class ClassDTO {
 	
 	private int classId;
 	private String className;
-	private float grade;
+	private String grade;
 	
 	public int getClassId() {
 		return classId;
@@ -18,10 +18,10 @@ public class ClassDTO {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-	public float getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(float grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
