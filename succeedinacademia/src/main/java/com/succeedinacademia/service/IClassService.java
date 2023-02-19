@@ -2,6 +2,11 @@ package com.succeedinacademia.service;
 
 import com.succeedinacademia.dto.ClassDTO;
 
+/**
+ * CRUD operations for classes
+ * @author Administrator
+ *
+ */
 public interface IClassService {
 	
 	/**

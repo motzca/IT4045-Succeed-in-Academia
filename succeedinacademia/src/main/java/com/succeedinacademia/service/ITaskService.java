@@ -2,6 +2,11 @@ package com.succeedinacademia.service;
 
 import com.succeedinacademia.dto.TaskDTO;
 
+/**
+ * CRUD operations for tasks
+ * @author Administrator
+ *
+ */
 public interface ITaskService {
 	
 	/**
