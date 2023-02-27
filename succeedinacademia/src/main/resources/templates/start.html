@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<!--xmlns:th="http://www.thymeleaf.org"-->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="ISO-8859-1"/>
 		<title>Succeed In Academia</title>
 	</head>
 	<body>
 		Welcome to Succeed In Academia!
+		<br>
+		
+		<form action="#" th:action="@{/savetask}" th:object="${taskDTO}" method="GET">
+			Item: <input type="text" name="item" th:field="*{Item}"/><br/>
+			Class: <input type="text" name="myClass" th:field="*{myClass}"/><br/>
+			
+			<button name="submit" type="submit" value="0">Submit</button>
+		</form>
 	</body>	
 </html>
