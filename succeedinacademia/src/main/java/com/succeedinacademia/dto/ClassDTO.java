@@ -1,7 +1,15 @@
 package com.succeedinacademia.dto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class ClassDTO {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int classId;
 	private String className;
 	private String grade;

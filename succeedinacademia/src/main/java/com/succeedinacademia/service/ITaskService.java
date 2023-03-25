@@ -20,5 +20,5 @@ public interface ITaskService {
 	 * Persist the given DTO.
 	 * @param TaskDTO
 	 */
-	void save(TaskDTO taskDTO);
+	boolean save(TaskDTO taskDTO) throws Exception;
 }

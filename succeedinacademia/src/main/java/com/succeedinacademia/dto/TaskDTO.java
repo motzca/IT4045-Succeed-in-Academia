@@ -1,7 +1,15 @@
 package com.succeedinacademia.dto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class TaskDTO {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int guid;
 	private String item;
 	private ClassDTO myClass;
