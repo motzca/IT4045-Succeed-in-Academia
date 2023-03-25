@@ -1,3 +1,4 @@
+<!-- Was causing errors so I took it out of src/main/resources -->
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
  

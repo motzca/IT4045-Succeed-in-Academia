@@ -1,17 +1,25 @@
 package com.succeedinacademia.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="classes")
 public class ClassDTO {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="CLASS_ID")
 	private int classId;
+	
+    @Column(name="CLASS_NAME")
 	private String className;
+    
+    @Column(name="GRADE")
 	private String grade;
 	
 	public int getClassId() {
