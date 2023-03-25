@@ -20,5 +20,5 @@ public interface IClassService {
 	 * Persist the given DTO.
 	 * @param TaskDTO
 	 */
-	void save(ClassDTO classDTO);
+	boolean save(ClassDTO classDTO) throws Exception;
 }

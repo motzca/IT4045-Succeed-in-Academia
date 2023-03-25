@@ -10,11 +10,12 @@ import com.succeedinacademia.dto.TaskDTO;
 @Controller
 public class SucceedInAcademiaController {
 	
+	/*
 	@RequestMapping(value="/savetask")
 	public String saveTask(TaskDTO taskDTO) {
 		taskDTO.setGuid(13);
 		return "start";
-	}
+	}*/
 	
 	/**
 	 * Handle the /start endpoint

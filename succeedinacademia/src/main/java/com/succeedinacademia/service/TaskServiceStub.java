@@ -22,7 +22,8 @@ public class TaskServiceStub implements ITaskService {
 	}
 	
 	@Override
-	public void save(TaskDTO taskDTO) {
+	public boolean save(TaskDTO taskDTO) throws Exception {
+		return false;
 		
 	}
 
