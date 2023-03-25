@@ -21,7 +21,8 @@ public class ClassServiceStub implements IClassService {
 	}
 	
 	@Override
-	public void save(ClassDTO classDTO) {
+	public boolean save(ClassDTO classDTO) throws Exception {
+		return false;
 		
 	}
 
