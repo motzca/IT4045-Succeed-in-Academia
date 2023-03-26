@@ -21,4 +21,6 @@ public interface IClassService {
 	 * @param TaskDTO
 	 */
 	boolean save(ClassDTO classDTO) throws Exception;
+
+	Iterable<ClassDTO> fetchAllClasses() throws Exception;
 }
