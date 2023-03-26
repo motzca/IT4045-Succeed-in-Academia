@@ -8,4 +8,7 @@ import com.succeedinacademia.dto.ClassDTO;
 public interface IClassDAO {
 
 	boolean save(ClassDTO classDTO) throws Exception;
+	
+	Iterable<ClassDTO> fetchAll() throws Exception;
+
 }

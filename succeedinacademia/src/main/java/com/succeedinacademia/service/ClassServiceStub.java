@@ -26,4 +26,10 @@ public class ClassServiceStub implements IClassService {
 		
 	}
 
+	@Override
+	public Iterable<ClassDTO> fetchAllClasses() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

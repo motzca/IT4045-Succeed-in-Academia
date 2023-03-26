@@ -27,4 +27,10 @@ public class TaskServiceStub implements ITaskService {
 		
 	}
 
+	@Override
+	public Iterable<TaskDTO> fetchAllTasks() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

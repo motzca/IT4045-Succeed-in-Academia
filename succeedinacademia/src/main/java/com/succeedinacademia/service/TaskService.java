@@ -1,11 +1,13 @@
 package com.succeedinacademia.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.succeedinacademia.dao.IClassDAO;
 import com.succeedinacademia.dao.ITaskDAO;
 import com.succeedinacademia.dto.TaskDTO;
 
+@Component
 public class TaskService implements ITaskService {
 	
 	@Autowired
@@ -25,6 +27,11 @@ public class TaskService implements ITaskService {
 		// TODO Auto-generated method stub
 		taskDAO.save(taskDTO);
 		return false;
+	}
+	
+	@Override
+	public Iterable<TaskDTO> fetchAllTasks() throws Exception {
+		return taskDAO.fetchAll();
 	}
 
 }
