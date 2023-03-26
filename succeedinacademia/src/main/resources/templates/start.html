@@ -10,7 +10,70 @@
 		Welcome to Succeed In Academia!
 		<br>
 		
-		<form action="#" th:action="@{/savetask}" th:object="${taskDTO}" method="GET">
+		Classes:
+		<ul class="list-group" th:if="${allClasses != null}">
+		  <li class="list-group-item" th:each="class : ${allClasses}">
+		    <div th:text="${class}"></div>
+		  </li>
+		</ul>
+		
+		<br>
+		
+		Tasks:
+		<ul class="list-group" th:if="${allTasks != null}">
+		  <li class="list-group-item" th:each="task : ${allTasks}">
+		    <div th:text="${task}"></div>
+		  </li>
+		</ul>
+		
+		
+		<br>
+		
+		<form action="#" th:action="@{/saveclass}" th:object="${classDTO}" method="POST" enctype="multipart/form-data">
+			<div class="mb-3">
+			  <label for="className" class="form-label">Class Name</label>
+			  <input type="text" class="form-control" id="className" name="className" field="*{className}" required>
+			</div>
+			<div class="mb-3">
+			  <label for="classGrade" class="form-label">Class Grade</label>
+			  <input type="text" class="form-control" id="classGrade" name="grade" field="*{grade}">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		
+		<br>
+		
+		<form action="#" th:action="@{/savetask}" th:object="${taskDTO}" method="POST" enctype="multipart/form-data">
+			<div class="mb-3">
+			  <label for="item" class="form-label">Item</label>
+			  <input type="text" class="form-control" id="item" name="item" field="*{item}" required>
+			</div>
+			<div class="mb-3">
+			  <label for="class" class="form-label">Class</label>
+			  <select class="form-select" id="class" name="myClass.guid" field="*{myClass.guid}" required>
+			  	<option value="">Select a class</option>
+			  	<option th:each="class : ${allClasses}" th:value="${class.guid}" th:text="${class.className}"></option>
+			  </select>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>	
+		<!--  
+		<form action="#" th:action="@{/saveclass}" th:object="${classDTO}" method="POST" enctype="multipart/form-data">
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="basic-addon1">Class Name</span>
+			  <input type="text" class="form-control" placeholder="Item" aria-label="Name" aria-describedby="basic-addon1" name="className" th:field="*{className}">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="basic-addon1">Class Grade</span>
+			  <input type="text" class="form-control" placeholder="Class" aria-label="Grade" aria-describedby="basic-addon1" name="grade" th:field="*{grade}">
+			</div>
+			
+			<button name="submit" type="submit" value="0">Submit</button>
+		</form>
+		
+		<br>
+		
+		<form action="#" th:action="@{/savetask}" th:object="${taskDTO}" method="POST" enctype="multipart/form-data">
 			<div class="input-group mb-3">
 			  <span class="input-group-text" id="basic-addon1">Item</span>
 			  <input type="text" class="form-control" placeholder="Item" aria-label="Item" aria-describedby="basic-addon1" name="item" th:field="*{item}">
@@ -22,5 +85,6 @@
 			
 			<button name="submit" type="submit" value="0">Submit</button>
 		</form>
+		-->
 	</body>	
 </html>

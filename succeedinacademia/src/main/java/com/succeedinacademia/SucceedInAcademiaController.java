@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,27 +34,65 @@ public class SucceedInAcademiaController {
 	
 	private List<TaskDTO> allTasks;
 	
-	/*
-	@RequestMapping(value="/savetask")
-	public String saveTask(TaskDTO taskDTO) {
-		taskDTO.setGuid(13);
-		return "start";
-	}*/
-	
 	/**
 	 * Handle the /start endpoint
 	 * @return
 	 */
 	@RequestMapping(value="/start", method=RequestMethod.GET)
 	public String read(Model model) {
-		model.addAttribute("taskDTO", new TaskDTO());
+		try {
+			Iterable<ClassDTO> allClasses = classService.fetchAllClasses();
+			model.addAttribute("allClasses", allClasses);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Unable to retreive classes", e);
+		}
+		
+		try {
+			Iterable<TaskDTO> allTasks = taskService.fetchAllTasks();
+			model.addAttribute("allTasks", allTasks);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Unable to retreive tasks", e);
+		}
+		
 		return "start";
 	}
 	
-	/**
-	 * Handle the / endpoint
-	 * @return
-	 */
+	@PostMapping(value="/saveclass")
+	public String saveClass(ClassDTO classDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			classService.save(classDTO);
+		} catch (Exception e) {
+			log.error("unable to save class", e);
+			e.printStackTrace();
+			modelAndView.setViewName("error");
+			return "start";
+		}
+		
+		modelAndView.addObject("classDTO", classDTO);
+		return "start";
+	}
+	
+	@PostMapping(value="/savetask")
+	public String saveTask(TaskDTO taskDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		try {
+			taskService.save(taskDTO);
+		} catch (Exception e) {
+			log.error("unable to save class", e);
+			e.printStackTrace();
+			modelAndView.setViewName("error");
+			return "start";
+		}
+		
+		modelAndView.addObject("taskDTO", taskDTO);
+		return "start";
+	}
+	
+	/*
+
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
 		return "start";
@@ -88,5 +127,5 @@ public class SucceedInAcademiaController {
 		}
 		return modelAndView;
 	}
-	
+	*/
 }
