@@ -1,5 +1,7 @@
 package com.succeedinacademia.service;
 
+import java.util.List;
+
 import com.succeedinacademia.dto.ClassDTO;
 
 /**
@@ -23,4 +25,6 @@ public interface IClassService {
 	boolean save(ClassDTO classDTO) throws Exception;
 
 	Iterable<ClassDTO> fetchAllClasses() throws Exception;
+
+	List<String> fetchAllClassNames() throws Exception;
 }

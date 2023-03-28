@@ -1,5 +1,7 @@
 package com.succeedinacademia.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +35,11 @@ public class ClassService implements IClassService {
 	@Override
 	public Iterable<ClassDTO> fetchAllClasses() throws Exception {
 		return classDAO.fetchAll();
+	}
+	
+	@Override
+	public List<String> fetchAllClassNames() throws Exception {
+		return classDAO.fetchAllClassNames();
 	}
 
 }

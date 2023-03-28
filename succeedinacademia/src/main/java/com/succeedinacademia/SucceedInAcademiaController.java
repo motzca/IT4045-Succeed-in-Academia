@@ -1,5 +1,6 @@
 package com.succeedinacademia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.succeedinacademia.dto.TaskDTO;
@@ -33,6 +36,8 @@ public class SucceedInAcademiaController {
 	private List<ClassDTO> allClasses;
 	
 	private List<TaskDTO> allTasks;
+
+	private List<String> allClassNames;
 	
 	/**
 	 * Handle the /start endpoint
@@ -72,12 +77,16 @@ public class SucceedInAcademiaController {
 		}
 		
 		modelAndView.addObject("classDTO", classDTO);
+		
+		allClassNames.add(classDTO.getClassName());
+		
 		return "start";
 	}
 	
 	@PostMapping(value="/savetask")
 	public String saveTask(TaskDTO taskDTO) {
 		ModelAndView modelAndView = new ModelAndView();
+		
 		try {
 			taskService.save(taskDTO);
 		} catch (Exception e) {
@@ -88,7 +97,26 @@ public class SucceedInAcademiaController {
 		}
 		
 		modelAndView.addObject("taskDTO", taskDTO);
+		
 		return "start";
+	}
+	
+	@RequestMapping(value="/classesAutocomplete")
+	@ResponseBody
+	public List<String> classNamesAutocomplete(@RequestParam(value="term", required = false) String term) {
+		List<String> suggestions = new ArrayList<String>();
+		
+		try {
+			allClassNames = classService.fetchAllClassNames();
+			for (String className : allClassNames) {
+				suggestions.add(className);
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
+			log.error("Exception in autocomplete", e);
+		}
+		
+		return suggestions;
 	}
 	
 	/*
