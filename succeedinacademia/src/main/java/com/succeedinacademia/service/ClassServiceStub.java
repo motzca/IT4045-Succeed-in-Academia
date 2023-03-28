@@ -32,4 +32,10 @@ public class ClassServiceStub implements IClassService {
 		return null;
 	}
 
+	@Override
+	public List<String> fetchAllClassNames() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

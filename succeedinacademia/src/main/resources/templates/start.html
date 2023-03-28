@@ -13,6 +13,13 @@
 		  </style>
 		  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		  	<script type="text/javascript">
+		  		$(function() {
+		  			$("#Class_Name").autocomplete({
+		  				source: "classesAutocomplete"
+		  			})
+		  		})
+		  	</script>
 		<title>Succeed In Academia</title>
 	</head>
 	<body>
@@ -41,7 +48,7 @@
 		<form action="#" th:action="@{/saveclass}" th:object="${classDTO}" method="POST" enctype="multipart/form-data">
 			<div class="mb-3">
 			  <label for="className" class="form-label">Class Name</label>
-			  <input type="text" class="form-control" id="className" name="className" field="*{className}" required>
+			  <input id="Class_Name" type="text" class="form-control" name="className" field="*{className}" required>
 			</div>
 			<div class="mb-3">
 			  <label for="classGrade" class="form-label">Class Grade</label>

@@ -1,5 +1,8 @@
 package com.succeedinacademia.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,16 @@ public class ClassDAO implements IClassDAO {
 	public Iterable<ClassDTO> fetchAll() throws Exception {
 		// TODO Auto-generated method stub
 		return classRepository.findAll();
+	}
+	
+	@Override
+	public List<String> fetchAllClassNames() throws Exception {
+	    List<String> classNames = new ArrayList<>();
+	    List<ClassDTO> classDTOs = (List<ClassDTO>) classRepository.findAll();
+	    for (ClassDTO classDTO : classDTOs) {
+	        classNames.add(classDTO.getClassName());
+	    }
+	    return classNames;
 	}
 
 }
