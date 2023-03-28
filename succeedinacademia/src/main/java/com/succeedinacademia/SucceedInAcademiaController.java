@@ -65,7 +65,7 @@ public class SucceedInAcademiaController {
 	}
 	
 	@PostMapping(value="/saveclass")
-	public String saveClass(ClassDTO classDTO) {
+	public ModelAndView saveClass(ClassDTO classDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		try {
 			classService.save(classDTO);
@@ -73,18 +73,20 @@ public class SucceedInAcademiaController {
 			log.error("unable to save class", e);
 			e.printStackTrace();
 			modelAndView.setViewName("error");
-			return "start";
+			return modelAndView;
 		}
+		
+		modelAndView.setViewName("start");
 		
 		modelAndView.addObject("classDTO", classDTO);
 		
-		allClassNames.add(classDTO.getClassName());
+		//allClassNames.add(classDTO.getClassName());
 		
-		return "start";
+		return modelAndView;
 	}
 	
 	@PostMapping(value="/savetask")
-	public String saveTask(TaskDTO taskDTO) {
+	public ModelAndView saveTask(TaskDTO taskDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		try {
@@ -93,12 +95,14 @@ public class SucceedInAcademiaController {
 			log.error("unable to save class", e);
 			e.printStackTrace();
 			modelAndView.setViewName("error");
-			return "start";
+			return modelAndView;
 		}
+		
+		modelAndView.setViewName("start");
 		
 		modelAndView.addObject("taskDTO", taskDTO);
 		
-		return "start";
+		return modelAndView;
 	}
 	
 	@RequestMapping(value="/classesAutocomplete")
