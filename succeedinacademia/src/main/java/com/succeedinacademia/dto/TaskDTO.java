@@ -44,5 +44,13 @@ public class TaskDTO {
 		this.myClass = myClass;
 	}
 	
+	public String getClassName() {
+		return myClass.getClassName();
+	}
+	
+	public void setClassName(String className) {
+		myClass.setClassName(className);
+	}
+	
 	
 }

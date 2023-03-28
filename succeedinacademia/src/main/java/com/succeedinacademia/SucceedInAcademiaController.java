@@ -97,7 +97,7 @@ public class SucceedInAcademiaController {
 			return modelAndView;
 		}
 		
-		modelAndView.setViewName("start");
+		modelAndView.setViewName("classes");
 		
 		modelAndView.addObject("classDTO", classDTO);
 		
