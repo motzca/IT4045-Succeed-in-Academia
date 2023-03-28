@@ -64,6 +64,27 @@ public class SucceedInAcademiaController {
 		return "start";
 	}
 	
+	@RequestMapping(value="/classes", method=RequestMethod.GET)
+	public String classes(Model model) {
+		try {
+			Iterable<ClassDTO> allClasses = classService.fetchAllClasses();
+			model.addAttribute("allClasses", allClasses);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Unable to retreive classes", e);
+		}
+		
+		try {
+			Iterable<TaskDTO> allTasks = taskService.fetchAllTasks();
+			model.addAttribute("allTasks", allTasks);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Unable to retreive tasks", e);
+		}
+		
+		return "classes";
+	}
+	
 	@PostMapping(value="/saveclass")
 	public ModelAndView saveClass(ClassDTO classDTO) {
 		ModelAndView modelAndView = new ModelAndView();
