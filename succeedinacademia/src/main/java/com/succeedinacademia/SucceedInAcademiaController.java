@@ -126,6 +126,8 @@ public class SucceedInAcademiaController {
 		return modelAndView;
 	}
 	
+	// @DeleteMapping(value="/delete/{id}")
+	
 	@RequestMapping(value="/classesAutocomplete")
 	@ResponseBody
 	public List<String> classNamesAutocomplete(@RequestParam(value="term", required = false) String term) {
