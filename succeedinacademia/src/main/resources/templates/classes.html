@@ -77,44 +77,40 @@
 			</div>
 		</nav>
 		<div class="container mt-5">
+				
+		<br>
 		
-		Tasks:
-		<ul class="list-group" th:if="${allTasks != null}">
-		  <li class="list-group-item" th:each="task : ${allTasks}">
-		    <div class="d-flex justify-content-between align-items-center">
-		      <div class="me-2">
-		        <div th:text="${task.item}"></div>
-		        <small class="text-muted" th:text="${task.myClass?.className}"></small>
-		      </div> 
-		      <div class="form-check form-switch">
-		        <input class="form-check-input" type="checkbox" id="taskCheck" th:id="'taskCheck_'+${task.guid}" th:name="'taskCheck_'+${task.guid}" onclick="deleteTask(${task.guid})">
-		        <label class="form-check-label" for="taskCheck"></label>
-		      </div>
-		    </div>
-		  </li>
-		</ul>
+		<form action="#" th:action="@{/saveclass}" th:object="${classDTO}" method="POST" enctype="multipart/form-data">
+			<div class="mb-3">
+			  <label for="className" class="form-label">Class Name</label>
+			  <input id="Class_Name" type="text" class="form-control" name="className" field="*{className}" required>
+			</div>
+			<div class="mb-3">
+			  <label for="classGrade" class="form-label">Class Grade</label>
+			  <input type="text" class="form-control" id="classGrade" name="grade" field="*{grade}">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 		
 		<br>
 		
-		<form th:action="@{/savetask}" th:object="${taskDTO}" method="POST" enctype="multipart/form-data">
-			<div class="mb-3">
-				<label for="taskName" class="form-label">Task Name</label>
-				<input type="text" class="form-control" id="taskName" name="item" field="*{item}" required>
-			</div>
-			<div class="mb-3">
-				<label for="Class_Name" class="form-label">Class Name</label>
-				<select class="form-control" id="Class_Name" name="className" field="*{className}" required>
-					<option value="">Select a class</option>
-					<option th:each="class : ${allClasses}" th:value="${class.className}" th:text="${class.className}"></option>
-				</select>
-			</div>
-			<button type="submit" class="btn btn-primary">Add Task</button>
-		</form>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Class Name</th>
+					<th scope="col">Class Grade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="class : ${allClasses}">
+					<td th:text="${class.className}"></td>
+					<td th:text="${class.grade}"></td>
+				</tr>
+			</tbody>
+		</table>
 		
-		<script type="text/javascript">
-			function addTask(task) {
-				document.getElementById("taskName").value = task.item;
-			}
-		</script>
-	</body>	
+		</div>
+	</body>
 </html>
+		
+			
