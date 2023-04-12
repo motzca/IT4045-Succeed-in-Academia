@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.succeedinacademia.dao.IClassDAO;
 import com.succeedinacademia.dao.ITaskDAO;
+import com.succeedinacademia.dto.ClassDTO;
 import com.succeedinacademia.dto.TaskDTO;
 
 @Component
@@ -35,6 +36,14 @@ public class TaskService implements ITaskService {
 	@Override
 	public Iterable<TaskDTO> fetchAllTasks() throws Exception {
 		return taskDAO.fetchAll();
+	}
+	
+	public void delete(int id) throws Exception {
+		taskDAO.delete(id);
+	}
+	
+	public void updateClass(TaskDTO taskDTO) throws Exception {
+		taskDAO.save(taskDTO);
 	}
 
 }

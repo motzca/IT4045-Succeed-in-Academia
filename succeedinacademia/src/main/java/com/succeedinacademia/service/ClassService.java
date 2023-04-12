@@ -49,5 +49,9 @@ public class ClassService implements IClassService {
 	public void delete(int id) throws Exception {
 		classDAO.delete(id);
 	}
+	
+	public void updateClass(ClassDTO classDTO) throws Exception {
+		classDAO.save(classDTO);
+	}
 
 }

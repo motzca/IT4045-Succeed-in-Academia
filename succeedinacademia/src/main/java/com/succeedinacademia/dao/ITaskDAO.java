@@ -14,5 +14,7 @@ public interface ITaskDAO {
 	Iterable<TaskDTO> fetchAll() throws Exception;
 	
 	List<TaskDTO> fetchTasksByClassId(int classId);
+	
+	void delete(int id);
 
 }

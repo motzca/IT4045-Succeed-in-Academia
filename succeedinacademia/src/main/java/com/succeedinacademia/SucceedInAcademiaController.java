@@ -153,6 +153,19 @@ public class SucceedInAcademiaController {
 		return modelAndView;
 	}
 	
+	//Lets you update a class
+	@RequestMapping(value="/updateClass" , method = {RequestMethod.PUT, RequestMethod.GET})
+	public String updateClass(ClassDTO classDTO) throws Exception {
+		classService.updateClass(classDTO);
+		return "redirect:/classes";
+	}
+	
+	//Lets you update a task
+	@RequestMapping(value="/updateTask" , method = {RequestMethod.PUT, RequestMethod.GET})
+	public String updateTask(TaskDTO taskDTO) throws Exception {
+		taskService.updateTask(taskDTO);
+		return "redirect:/classes";
+	}
 	
 	
 	@RequestMapping(value="/classesAutocomplete")
