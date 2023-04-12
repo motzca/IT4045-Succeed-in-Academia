@@ -1,6 +1,8 @@
 package com.succeedinacademia.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +11,7 @@ import com.succeedinacademia.dto.TaskDTO;
 
 @Component
 public class TaskDAO implements ITaskDAO {
-	
+	Map<Integer, TaskDTO> allTasks = new HashMap<>();
 	@Autowired
 	TaskRepository taskRepository;
 
@@ -31,5 +33,11 @@ public class TaskDAO implements ITaskDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void delete(int id) {
+		allTasks.remove(id);
+	}
+
 
 }

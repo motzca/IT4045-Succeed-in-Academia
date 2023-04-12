@@ -23,4 +23,6 @@ public interface ITaskService {
 	boolean save(TaskDTO taskDTO) throws Exception;
 
 	Iterable<TaskDTO> fetchAllTasks() throws Exception;
+
+	void updateTask(TaskDTO taskDTO) throws Exception;
 }

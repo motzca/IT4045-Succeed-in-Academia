@@ -14,5 +14,7 @@ public interface IClassDAO {
 	Iterable<ClassDTO> fetchAll() throws Exception;
 	
 	List<String> fetchAllClassNames() throws Exception;
+	
+	void delete(int id);
 
 }

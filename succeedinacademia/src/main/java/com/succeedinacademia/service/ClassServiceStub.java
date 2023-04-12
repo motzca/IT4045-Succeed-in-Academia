@@ -38,4 +38,14 @@ public class ClassServiceStub implements IClassService {
 		return null;
 	}
 
+	@Override
+	public void delete(int id) throws Exception {
+		return;
+	}
+	
+	@Override
+	public void updateClass(ClassDTO classDTO) throws Exception {
+		return;
+	}
+
 }

@@ -27,4 +27,8 @@ public interface IClassService {
 	Iterable<ClassDTO> fetchAllClasses() throws Exception;
 
 	List<String> fetchAllClassNames() throws Exception;
+
+	void delete(int id) throws Exception;
+
+	void updateClass(ClassDTO classDTO) throws Exception;
 }

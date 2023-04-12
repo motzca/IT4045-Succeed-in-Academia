@@ -105,11 +105,15 @@
 				<tr th:each="class : ${allClasses}">
 					<td th:text="${class.className}"></td>
 					<td th:text="${class.grade}"></td>
+					<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="editClass">
+					  Edit Class
+					</button> </td>
+					<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="deleteClass">
+					  Delete Class
+					</button> </td>
 				</tr>
 			</tbody>
 		</table>
-		
-		</div>
 	</body>
 </html>
 		

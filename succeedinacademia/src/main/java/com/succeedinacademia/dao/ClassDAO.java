@@ -1,7 +1,9 @@
 package com.succeedinacademia.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +12,8 @@ import com.succeedinacademia.dto.ClassDTO;
 
 @Component
 public class ClassDAO implements IClassDAO {
+	
+	Map<Integer, ClassDTO> allClasses = new HashMap<>();
 	
 	@Autowired
 	ClassRepository classRepository;
@@ -35,6 +39,11 @@ public class ClassDAO implements IClassDAO {
 	        classNames.add(classDTO.getClassName());
 	    }
 	    return classNames;
+	}
+	
+	@Override
+	public void delete(int id) {
+		allClasses.remove(id);
 	}
 
 }

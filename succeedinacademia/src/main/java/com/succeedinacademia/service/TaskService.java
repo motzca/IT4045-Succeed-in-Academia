@@ -1,8 +1,5 @@
 package com.succeedinacademia.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +32,14 @@ public class TaskService implements ITaskService {
 	@Override
 	public Iterable<TaskDTO> fetchAllTasks() throws Exception {
 		return taskDAO.fetchAll();
+	}
+	
+	public void delete(int id) throws Exception {
+		taskDAO.delete(id);
+	}
+	
+	public void updateTask(TaskDTO taskDTO) throws Exception {
+		taskDAO.save(taskDTO);
 	}
 
 }
