@@ -40,7 +40,12 @@ public class ClassServiceStub implements IClassService {
 
 	@Override
 	public void delete(int id) throws Exception {
-		// TODO Auto-generated method stub
+		return;
+	}
+	
+	@Override
+	public void updateClass(ClassDTO classDTO) throws Exception {
+		return;
 	}
 
 }

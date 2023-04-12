@@ -32,5 +32,11 @@ public class TaskServiceStub implements ITaskService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void updateTask(TaskDTO taskDTO) throws Exception {
+		return;
+		
+	}
 
 }
