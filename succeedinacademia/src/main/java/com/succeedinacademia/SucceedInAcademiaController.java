@@ -5,8 +5,13 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,6 +69,7 @@ public class SucceedInAcademiaController {
 		return "start";
 	}
 	
+	// Gets all classes
 	@RequestMapping(value="/classes", method=RequestMethod.GET)
 	public String classes(Model model) {
 		try {
@@ -85,6 +91,26 @@ public class SucceedInAcademiaController {
 		return "classes";
 	}
 	
+	//Gets a single class
+	@GetMapping(value="/classes/{id}")
+		public ClassDTO fetchById(@PathVariable("id") int id) throws Exception {
+			return classService.fetchById(id);
+		}
+	
+	//Deletes a class
+	@DeleteMapping("/classes/{classId}")
+	public ResponseEntity deleteClass(@PathVariable("classId") int classId) {
+		try {
+			classService.delete(classId);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Unable to delete class", e);
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	// Save classes
 	@PostMapping(value="/saveclass")
 	public ModelAndView saveClass(ClassDTO classDTO) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -106,6 +132,7 @@ public class SucceedInAcademiaController {
 		return modelAndView;
 	}
 	
+	// Saves tasks
 	@PostMapping(value="/savetask")
 	public ModelAndView saveTask(TaskDTO taskDTO) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -126,7 +153,7 @@ public class SucceedInAcademiaController {
 		return modelAndView;
 	}
 	
-	// @DeleteMapping(value="/delete/{id}")
+	
 	
 	@RequestMapping(value="/classesAutocomplete")
 	@ResponseBody

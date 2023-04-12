@@ -1,5 +1,6 @@
 package com.succeedinacademia.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import com.succeedinacademia.dto.ClassDTO;
 
 @Component
 public class ClassService implements IClassService {
+	
+	private static List<ClassDTO> classNames = new ArrayList<>();
 
 	@Autowired
 	IClassDAO classDAO;
@@ -40,6 +43,11 @@ public class ClassService implements IClassService {
 	@Override
 	public List<String> fetchAllClassNames() throws Exception {
 		return classDAO.fetchAllClassNames();
+	}
+	
+	@Override
+	public void delete(int id) throws Exception {
+		classDAO.delete(id);
 	}
 
 }
