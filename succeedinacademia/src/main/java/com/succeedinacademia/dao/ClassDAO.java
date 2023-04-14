@@ -44,6 +44,7 @@ public class ClassDAO implements IClassDAO {
 	@Override
 	public void delete(int id) {
 		allClasses.remove(id);
+	    classRepository.deleteById(id);
 	}
 
 }

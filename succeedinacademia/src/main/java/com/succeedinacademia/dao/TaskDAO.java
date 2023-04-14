@@ -37,6 +37,7 @@ public class TaskDAO implements ITaskDAO {
 	@Override
 	public void delete(int id) {
 		allTasks.remove(id);
+		taskRepository.deleteById(id);
 	}
 
 

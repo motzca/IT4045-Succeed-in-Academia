@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,20 +97,9 @@ public class SucceedInAcademiaController {
 		public ClassDTO fetchById(@PathVariable("id") int id) throws Exception {
 			return classService.fetchById(id);
 		}
-	
-	//Deletes a class
-	@DeleteMapping("/classes/{classId}")
-	public ResponseEntity deleteClass(@PathVariable("classId") int classId) {
-		try {
-			classService.delete(classId);
-			return new ResponseEntity(HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("Unable to delete class", e);
-			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	
+
+
+	/*
 	// Save classes
 	@PostMapping(value="/saveclass")
 	public ModelAndView saveClass(ClassDTO classDTO) {
@@ -130,7 +120,27 @@ public class SucceedInAcademiaController {
 		//allClassNames.add(classDTO.getClassName());
 		
 		return modelAndView;
+	}*/
+	
+	@PostMapping(value="/saveclass")
+	public ModelAndView saveClass(ClassDTO classDTO) {
+	    ModelAndView modelAndView = new ModelAndView();
+	    try {
+	        classService.save(classDTO);
+	    } catch (Exception e) {
+	        log.error("unable to save class", e);
+	        e.printStackTrace();
+	        modelAndView.setViewName("error");
+	        return modelAndView;
+	    }
+
+	    modelAndView.setViewName("redirect:/classes");
+
+	    //allClassNames.add(classDTO.getClassName());
+
+	    return modelAndView;
 	}
+
 	
 	// Saves tasks
 	@PostMapping(value="/savetask")
@@ -146,12 +156,41 @@ public class SucceedInAcademiaController {
 			return modelAndView;
 		}
 		
-		modelAndView.setViewName("start");
+		modelAndView.setViewName("redirect:/start");
 		
 		modelAndView.addObject("taskDTO", taskDTO);
 		
 		return modelAndView;
 	}
+	
+	// Deletes Class
+	@PostMapping("/classes/delete")
+	public String deleteClass(@ModelAttribute("class") ClassDTO classDTO) throws Exception {
+	    classService.delete(classDTO.getClassId());
+	    return "redirect:/classes";
+	}
+	
+	@PostMapping("/classes/edit/{classId}")
+	public String editClass(@PathVariable Integer classId, @ModelAttribute("classDTO") ClassDTO classDTO) throws Exception {
+	    classDTO.setClassId(classId);
+	    classService.updateClass(classDTO);
+	    return "redirect:/classes";
+	}
+	
+	@DeleteMapping("/tasks/{id}")
+	  public ResponseEntity<Void> deleteTask(@PathVariable("id") int id) {
+	    try {
+	      taskService.delete(id);
+	      return ResponseEntity.noContent().build();
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      log.error("Unable to delete task", e);
+	      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
+	  }
+
+	
+	/*
 	
 	//Lets you update a class
 	@RequestMapping(value="/updateClass" , method = {RequestMethod.PUT, RequestMethod.GET})
@@ -165,7 +204,7 @@ public class SucceedInAcademiaController {
 	public String updateTask(TaskDTO taskDTO) throws Exception {
 		taskService.updateTask(taskDTO);
 		return "redirect:/classes";
-	}
+	}*/
 	
 	
 	@RequestMapping(value="/classesAutocomplete")

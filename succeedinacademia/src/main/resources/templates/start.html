@@ -87,7 +87,7 @@
 		        <small class="text-muted" th:text="${task.myClass?.className}"></small>
 		      </div> 
 		      <div class="form-check form-switch">
-		        <input class="form-check-input" type="checkbox" id="taskCheck" th:id="'taskCheck_'+${task.guid}" th:name="'taskCheck_'+${task.guid}" onclick="deleteTask(${task.guid})">
+		        <input class="form-check-input" type="checkbox" id="taskCheck" th:id="'taskCheck_'+${task.guid}" th:name="'taskCheck_'+${task.guid}" onclick="deleteTask(this)" th:data-task-id="${task.guid}">
 		        <label class="form-check-label" for="taskCheck"></label>
 		      </div>
 		    </div>
@@ -115,6 +115,24 @@
 			function addTask(task) {
 				document.getElementById("taskName").value = task.item;
 			}
+			
+			function deleteTask(element) {
+				  let taskId = element.getAttribute("data-task-id");
+				  fetch("/tasks/" + taskId, {
+				    method: "DELETE",
+				  })
+				  .then(response => {
+				    if (response.status === 204) {
+				      // If the task was deleted successfully, remove it from the DOM
+				      let taskItem = element.closest(".list-group-item");
+				      taskItem.remove();
+				    }
+				  })
+				  .catch(error => {
+				    console.error("Error deleting task", error);
+				  });
+				}
+
 		</script>
 	</body>	
 </html>
