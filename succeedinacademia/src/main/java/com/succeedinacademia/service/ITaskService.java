@@ -25,4 +25,6 @@ public interface ITaskService {
 	Iterable<TaskDTO> fetchAllTasks() throws Exception;
 
 	void updateTask(TaskDTO taskDTO) throws Exception;
+	
+	void delete(int id) throws Exception;
 }

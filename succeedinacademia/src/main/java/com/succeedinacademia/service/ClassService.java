@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.succeedinacademia.dao.ClassRepository;
 import com.succeedinacademia.dao.IClassDAO;
 import com.succeedinacademia.dao.ITaskDAO;
 import com.succeedinacademia.dto.ClassDTO;
@@ -20,6 +21,9 @@ public class ClassService implements IClassService {
 	
 	@Autowired
 	ITaskDAO taskDAO;
+	
+	@Autowired
+	ClassRepository classRepository;
 	
 	@Override
 	public ClassDTO fetchById(int id) {
@@ -51,6 +55,7 @@ public class ClassService implements IClassService {
 	}
 	
 	public void updateClass(ClassDTO classDTO) throws Exception {
+		classRepository.save(classDTO);
 		classDAO.save(classDTO);
 	}
 

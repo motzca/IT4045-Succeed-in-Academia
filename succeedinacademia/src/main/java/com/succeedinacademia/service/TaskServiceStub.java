@@ -39,4 +39,10 @@ public class TaskServiceStub implements ITaskService {
 		
 	}
 
+	@Override
+	public void delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return;
+	}
+
 }

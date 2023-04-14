@@ -19,7 +19,27 @@
 		  				source: "classesAutocomplete"
 		  			})
 		  		})
-		  	</script>
+		  		
+		  		$(document).ready(function() {
+		  			$('.edit-button').click(function() {
+		  			    var row = $(this).closest('tr');
+		  			    row.find('.editable-field').hide();
+		  			    row.find('.editable-input').show();
+		  			    row.find('.edit-button').hide();
+		  			    row.find('.save-button').show();
+		  			});
+				
+		  			$('.save-button').click(function() {
+		  			    var row = $(this).closest('tr');
+		  			    row.find('.editable-input').hide();
+		  			    row.find('.editable-field').show();
+		  			    row.find('.edit-button').show();
+		  			    row.find('.save-button').hide();
+		  			    row.find('.edit-form').submit();
+		  			});
+				});
+
+			</script>
 		<title>Succeed In Academia</title>
 		<style>
 			body {
@@ -94,25 +114,37 @@
 		
 		<br>
 		
+		
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">Class Name</th>
-					<th scope="col">Class Grade</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="class : ${allClasses}">
-					<td th:text="${class.className}"></td>
-					<td th:text="${class.grade}"></td>
-					<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="editClass">
-					  Edit Class
-					</button> </td>
-					<td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="deleteClass">
-					  Delete Class
-					</button> </td>
-				</tr>
-			</tbody>
+		    <thead>
+		        <tr>
+		            <th scope="col">Class Name</th>
+		            <th scope="col">Class Grade</th>
+		            <th scope="col">Action</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr th:each="class : ${allClasses}">
+		            <td>
+		                <span th:text="${class.className}" class="editable-field"></span>
+		                <input type="text" class="form-control editable-input" name="className"
+		                       field="*{className}" th:value="${class.className}" required style="display:none;">
+		            </td>
+		            <td>
+		                <span th:text="${class.grade}" class="editable-field"></span>
+		                <input type="text" class="form-control editable-input" name="grade"
+		                       field="*{grade}" th:value="${class.grade}" style="display:none;">
+		            </td>
+		            <td>
+		                <!--<button class="btn btn-primary edit-button">Edit</button>
+		                <button type="submit" class="btn btn-primary save-button" style="display:none;">Save</button>-->
+		                <form th:action="@{/classes/delete}" method="post" th:object="${class}">
+		                    <input type="hidden" name="classId" th:value="${class.classId}"/>
+		                    <button type="submit" class="btn btn-danger">Delete</button>
+		                </form>
+		            </td>
+		        </tr>
+		    </tbody>
 		</table>
 	</body>
 </html>
