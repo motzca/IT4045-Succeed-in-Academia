@@ -98,29 +98,6 @@ public class SucceedInAcademiaController {
 			return classService.fetchById(id);
 		}
 
-
-	/*
-	// Save classes
-	@PostMapping(value="/saveclass")
-	public ModelAndView saveClass(ClassDTO classDTO) {
-		ModelAndView modelAndView = new ModelAndView();
-		try {
-			classService.save(classDTO);
-		} catch (Exception e) {
-			log.error("unable to save class", e);
-			e.printStackTrace();
-			modelAndView.setViewName("error");
-			return modelAndView;
-		}
-		
-		modelAndView.setViewName("classes");
-		
-		modelAndView.addObject("classDTO", classDTO);
-		
-		//allClassNames.add(classDTO.getClassName());
-		
-		return modelAndView;
-	}*/
 	
 	@PostMapping(value="/saveclass")
 	public ModelAndView saveClass(ClassDTO classDTO) {
@@ -188,24 +165,6 @@ public class SucceedInAcademiaController {
 	      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	    }
 	  }
-
-	
-	/*
-	
-	//Lets you update a class
-	@RequestMapping(value="/updateClass" , method = {RequestMethod.PUT, RequestMethod.GET})
-	public String updateClass(ClassDTO classDTO) throws Exception {
-		classService.updateClass(classDTO);
-		return "redirect:/classes";
-	}
-	
-	//Lets you update a task
-	@RequestMapping(value="/updateTask" , method = {RequestMethod.PUT, RequestMethod.GET})
-	public String updateTask(TaskDTO taskDTO) throws Exception {
-		taskService.updateTask(taskDTO);
-		return "redirect:/classes";
-	}*/
-	
 	
 	@RequestMapping(value="/classesAutocomplete")
 	@ResponseBody
@@ -225,41 +184,4 @@ public class SucceedInAcademiaController {
 		return suggestions;
 	}
 	
-	/*
-
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String index() {
-		return "start";
-	}
-	
-	@RequestMapping("/showClasses")
-	public ModelAndView showClasses() {
-		ModelAndView modelAndView = new ModelAndView();
-		try {
-			Iterable<ClassDTO> allClasses = classService.fetchAllClasses();
-			modelAndView.setViewName("showClasses");
-			modelAndView.addObject("allClasses", allClasses);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("Unable to retreive classes", e);
-			modelAndView.setViewName("error");
-		}
-		return modelAndView;
-	}
-	
-	@RequestMapping("/showTasks")
-	public ModelAndView showTasks() {
-		ModelAndView modelAndView = new ModelAndView();
-		try {
-			Iterable<TaskDTO> allTasks = taskService.fetchAllTasks();
-			modelAndView.setViewName("showTasks");
-			modelAndView.addObject("allTasks", allTasks);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("Unable to retreive tasks", e);
-			modelAndView.setViewName("error");
-		}
-		return modelAndView;
-	}
-	*/
 }
